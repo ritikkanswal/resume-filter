@@ -1,0 +1,93 @@
+{% load static %}
+<html>
+
+<head>
+  <title>Resume Filter</title>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+  <link rel="stylesheet" href="{% static 'style.css' %}">
+  <script type="text/javascript">
+    google.charts.load('current', {
+      packages: ['corechart']
+    });
+  </script>
+  <script type="text/javascript">
+    function drawChart() {
+      /* Define the chart to be drawn.*/
+      var result = JSON.parse("{{data|escapejs}}");
+      var dict = result;
+      var arr = [];
+      arr.push(['Skill', 'Keyword Matched Count'])
+      for (var key in dict) {
+        if (dict.hasOwnProperty(key)) {
+          arr.push([key, dict[key]]);
+        }
+      }
+      // var result = JSON.parse(data);
+      var Values = Object.values(result);
+      console.log(arr);
+
+      var data = google.visualization.arrayToDataTable(arr);  
+      var options = {
+        title: 'Keywords Matched',
+        isStacked: true,
+        backgroundColor: 'white'
+      };
+      /* Instantiate and draw the chart.*/
+      var chart = new google.visualization.BarChart(document.getElementById('container'));
+      chart.draw(data, options);
+    }
+    google.charts.setOnLoadCallback(drawChart);
+  </script>
+  <script type="text/javascript">
+    google.charts.load('current', { 'packages': ['corechart'] });
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+
+      var result = JSON.parse("{{data|escapejs}}");
+      var dict = result;
+      var arr = [];
+      arr.push(['Task', 'Hours per Day'])
+      for (var key in dict) {
+        if (dict.hasOwnProperty(key)) {
+          arr.push([key, dict[key]]);
+        }
+      }
+      // var result = JSON.parse(data);
+      var Values = Object.values(result);
+      console.log(arr);
+
+      var data = google.visualization.arrayToDataTable(arr);
+      var options = {
+        'title': 'Skill Proportion',
+        hAxis: {
+          title: 'Month'
+        },
+        vAxis: {
+          title: 'Temperature'
+        },
+        backgroundColor: 'powderblue'
+      };
+      var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+      chart.draw(data, options);
+    }
+  </script>
+</head>
+
+<body>
+
+  <div class="circle">Result</div>
+  <div class="left">
+    <div class="centered">
+      <div id="piechart"></div>
+    </div>
+  </div>
+
+  <div class="right">
+    <div class="centered">
+      <div id="container"></div>
+    </div>
+  </div>
+</body>
+</body>
+
+</html>
