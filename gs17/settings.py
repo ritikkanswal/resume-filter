@@ -25,7 +25,7 @@ SECRET_KEY = '+9j_ptfwwm6s+pcm&qxlpo6j1*%-309a)=nyx7^95lrtlk_zkj'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['localhost', '127.0.0.1','resume_filter']
 
 
 # Application definition
