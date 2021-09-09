@@ -150,4 +150,4 @@ TEMPLATE_DIRS = (
 
 WHITENOISE_USE_FINDERS = True
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-# django_heroku.settings(locals(),staticfiles=False)
+django_heroku.settings()
