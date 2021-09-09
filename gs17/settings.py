@@ -71,31 +71,31 @@ WSGI_APPLICATION = 'gs17.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
-# POSTGRES_USERNAME = os.environ.get("POSTGRES_USERNAME", "postgres")
-# POSTGRES_PASSWORD = os.environ.get("POSTGRES_PASSWORD", "postgres")
-# POSTGRES_HOST = os.environ.get("POSTGRES_HOST", "localhost")
-# POSTGRES_PORT = os.environ.get("POSTGRES_PORT", 5432)
-# POSTGRES_DB = os.environ.get("POSTGRES_DB", 'Blog')
-
 # DATABASES = {
-#     "default": {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         "NAME": POSTGRES_DB,
-#         "USER": POSTGRES_USERNAME,
-#         "PASSWORD": POSTGRES_PASSWORD,
-#         "HOST": POSTGRES_HOST,
-#         "PORT": POSTGRES_PORT,
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
-# db_from_env = dj_database_url.config(conn_max_age=500)
-# DATABASES['default'].update(db_from_env)
+
+POSTGRES_USERNAME = os.environ.get("POSTGRES_USERNAME", "postgres")
+POSTGRES_PASSWORD = os.environ.get("POSTGRES_PASSWORD", "postgres")
+POSTGRES_HOST = os.environ.get("POSTGRES_HOST", "localhost")
+POSTGRES_PORT = os.environ.get("POSTGRES_PORT", 5432)
+POSTGRES_DB = os.environ.get("POSTGRES_DB", 'Blog')
+
+DATABASES = {
+    "default": {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        "NAME": POSTGRES_DB,
+        "USER": POSTGRES_USERNAME,
+        "PASSWORD": POSTGRES_PASSWORD,
+        "HOST": POSTGRES_HOST,
+        "PORT": POSTGRES_PORT,
+    }
+}
+db_from_env = dj_database_url.config(conn_max_age=500)
+DATABASES['default'].update(db_from_env)
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators

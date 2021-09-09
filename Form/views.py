@@ -10,7 +10,7 @@ def showformdata(request):
         data=request.FILES
         print(data)
         uploaded_file=data['document']
-        url ='http://127.0.0.1:8080/studentapi/'
+        url ='https://resume-filter123.herokuapp.com/studentapi/'
         data={'name':"Riitik"}
         files = {'file': uploaded_file}
         r = requests.post(url,data=data,files=files)
